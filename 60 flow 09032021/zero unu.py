@@ -43,9 +43,9 @@ def main(board):
     while not win:
         draw_board(board)
         if counter % 2 == 0:
-            take_input("X")
+            takeInput("X")
         else:
-            take_input("O")
+            takeInput("O")
         counter += 1
         if counter > 4:
             tmp = check_win(board)
@@ -65,7 +65,7 @@ main(board)
 
 
 board = list(range(1,10))
-def take_input(player_token):
+def takeInput(player_token):
     valid = False
     while not valid:
         player_answer = input("Куда поставим " + player_token+"? ")
@@ -96,9 +96,9 @@ def main(board):
     while not win:
         draw_board(board)
         if counter % 2 == 0:
-            take_input("X")
+            takeInput("X")
         else:
-            take_input("O")
+            takeInput("O")
         counter += 1
         if counter > 4:
             tmp = check_win(board)
