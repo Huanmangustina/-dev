@@ -6,7 +6,7 @@ board = list(range(1, 10))
 
 
 # напишем функцию, которая будет рисовать игровое поле.
-def draw_board (board):
+def draw_board(board):
     print("-" * 13)
     for i in range(3):
         print("|", board[0 + i * 3], "|", board[1 + i * 3], "|", board[2 + i * 3], "|")
@@ -18,19 +18,20 @@ def take_input(player_token):
     valid = False
     while not valid:
         player_answer = input("Куда поставим " + player_token + "? ")
-        try:
+        try: # конструкция для неправильных значений вводе try-except-print
             player_answer = int(player_answer)
         except:
             print("Некорректный ввод. Вы уверены, что ввели число?")
             continue
         if player_answer >= 1 and player_answer <= 9:
-            if (str(board[player_answer - 1]) not in "XO"):
+            if str(board[player_answer - 1]) not in "XO":
                 board[player_answer - 1] = player_token
                 valid = True
             else:
                 print("Эта клеточка уже занята")
         else:
             print("Некорректный ввод. Введите число от 1 до 9 чтобы походить.")
+
 
 # задаем кортедж выйгрышных значений и цикл проверки текущих значений
 # Если символы во всех трех заданных клетках равны - возвращаем выигрышный символ,
@@ -44,10 +45,11 @@ def check_win(board):
             return board[each[0]]
     return False
 
+
 # Главная функция, в которой происходит игра
 # счетчик чередует возможность ввода Х и О
 # всего не более 9 ходов
-def main(board):
+def main(board, takeInput=None):
     counter = 0
     win = False
     while not win:
@@ -57,8 +59,8 @@ def main(board):
         else:
             takeInput("O")
         counter += 1
-        if counter > 4: # выигрыш не возможен до 5 хода
-            tmp = check_win(board) #  чтобы не вызывать функцию check_win
+        if counter > 4:  # выигрыш не возможен до 5 хода
+            tmp = check_win(board)  # чтобы не вызывать функцию check_win
             if tmp:
                 print(tmp, "выиграл!")
                 win = True
@@ -70,5 +72,3 @@ def main(board):
 
 
 main(board)
-
-
